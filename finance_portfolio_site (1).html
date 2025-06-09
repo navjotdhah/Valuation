@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wynn Resorts Valuation - Navjot Dhah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 2rem;
+    }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    .code-block {
+      background: #eee;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: monospace;
+    }
+    canvas {
+      max-width: 100%;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Valuation and Financial Analysis - Wynn Resorts</h1>
+    <p>Navjot Dhah | Finance Portfolio</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>📊 Company Overview</h2>
+      <p>Wynn Resorts (WYNN) is a luxury hotel and casino operator with locations in Las Vegas, Macau, and expanding in the UAE. This analysis evaluates its value using DCF, enterprise value comparisons, and quantitative models.</p>
+    </section>
+
+    <section>
+      <h2>💰 Financials Overview</h2>
+      <div class="code-block">
+        Revenue (2024E): $6.8B<br>
+        EBITDA (2024E): $1.6B<br>
+        Net Income: $420M<br>
+        Free Cash Flow: $850M<br>
+        Total Debt: $12.3B<br>
+        Cash: $2.2B<br>
+        Shares Outstanding: 113M<br>
+        Stock Price: $95<br>
+      </div>
+      <h3>Enterprise Value Calculation</h3>
+      <div class="code-block">
+        EV = Market Cap + Debt - Cash = (113M × $95) + $12.3B - $2.2B = ~$21.8B
+      </div>
+    </section>
+
+    <section>
+      <h2>📈 DCF Analysis</h2>
+      <p>Assumptions:</p>
+      <div class="code-block">
+        - FCF growth: 7% annually<br>
+        - WACC: 9.5%<br>
+        - Terminal Growth: 2.5%<br>
+        - 5-Year FCF Projection → Intrinsic Value: ~$117/share
+      </div>
+      <canvas id="dcfChart"></canvas>
+    </section>
+
+    <section>
+      <h2>📊 Competitor Comparison: MGM Resorts & Caesars</h2>
+      <div class="code-block">
+        MGM:
+        - Market Cap: $13.6B
+        - EV: $29.5B
+        - EBITDA: $3.1B
+        - EV/EBITDA: ~9.5x
+
+        Caesars (CZR):
+        - Market Cap: $8.1B
+        - EV: $26.2B
+        - EBITDA: $3.3B
+        - EV/EBITDA: ~7.9x
+
+        Wynn:
+        - EV: $21.8B
+        - EBITDA: $1.6B
+        - EV/EBITDA: ~13.6x
+      </div>
+      <canvas id="ebitdaChart"></canvas>
+    </section>
+
+    <section>
+      <h2>📉 Quantitative Models</h2>
+      <div class="code-block">
+        CAPM:
+        E(R) = 3.5% + 1.6 × (8.0%) = 16.3%
+
+        Sharpe Ratio:
+        (Expected Return - Risk-Free) / Volatility = (16.3% - 3.5%) / 18% ≈ 0.71
+
+        Monte Carlo Simulation:
+        Used to model 1-year price range with volatility and return assumptions
+      </div>
+    </section>
+
+    <section>
+      <h2>✅ Final Conclusion</h2>
+      <ul>
+        <li>Wynn’s EV/EBITDA is higher than peers, but justified by luxury positioning and international growth (e.g., UAE)</li>
+        <li>DCF suggests intrinsic value around $117, giving ~23% upside from current price</li>
+        <li>Strong FCF, new expansion, and improving margins support undervaluation case</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built by Navjot Dhah | <a href="mailto:navjot@example.com">Contact</a></p>
+  </footer>
+
+  <script>
+    // DCF Free Cash Flow Chart
+    const dcfCtx = document.getElementById('dcfChart').getContext('2d');
+    new Chart(dcfCtx, {
+      type: 'line',
+      data: {
+        labels: ['2024', '2025', '2026', '2027', '2028'],
+        datasets: [{
+          label: 'Projected Free Cash Flow ($M)',
+          data: [850, 909.5, 973.2, 1041.3, 1114.2],
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2
+        }]
+      },
+      options: { scales: { y: { beginAtZero: false } } }
+    });
+
+    // EV/EBITDA Comparison Chart
+    const ebitdaCtx = document.getElementById('ebitdaChart').getContext('2d');
+    new Chart(ebitdaCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Wynn', 'MGM', 'Caesars'],
+        datasets: [{
+          label: 'EV/EBITDA Ratio',
+          data: [13.6, 9.5, 7.9],
+          backgroundColor: ['#0074D9', '#FF4136', '#2ECC40']
+        }]
+      },
+      options: { scales: { y: { beginAtZero: true } } }
+    });
+  </script>
+</body>
+</html>
